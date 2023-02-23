@@ -95,3 +95,39 @@ function getFirst<T extends Stack<U>, U>(container: T): U {
 
 - `extends`[확장]: 키워드는 새로운 클래스의 '상속'을 위해 사용한다. 상위 클래스의 모든 프로퍼티와 메서드들을 갖고 있으므로 일일이 정의하지 않아도 된다.
   상위 클래스의 프로퍼티를 지정하지 않으면, 초기값으로 선언되며 에러는 반환하지 않는다.
+  ```javascript
+  interface BasicAddress {
+    name?: string;
+    street: string;
+    city: string;
+    country: string;
+    postalCode: string;
+  }
+  interface AddressWithUnit extends BasicAddress {
+    unit: string;
+  }
+  //{
+  //  name?: string;
+  //  street: string;
+  //  city: string;
+  //  country: string;
+  //  postalCode: string;
+  //  unit: string
+  //}
+  ```
+
+---
+
+- `keyof`연산자: object에 사용하면 object가 가지고 있는 모든 key값을 union type으로 합쳐서 내보내 준다.
+
+```javascript
+interface Car {
+	name: string;
+    price: number;
+}
+
+type CarKeys = keyof Car;
+let carPrice: CarKeys = 'price';
+let carName: CarKeys = 'name';
+let carName2: Carkeys = 'namename'; // 'price' or 'name' 만 가능하다.
+```
